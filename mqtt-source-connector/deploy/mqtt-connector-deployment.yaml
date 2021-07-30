@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mqtt-kafka-connector
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mqtt-kafka-connector
+  template:
+    metadata:
+      labels:
+        app: mqtt-kafka-connector
+    spec:
+      containers:
+        - name: mqtt-kafka-connector
+          image: abhirockzz/mqtt-kafka-connector
+          envFrom:
+            - configMapRef:
+                name: mqtt-connector-config
+            - secretRef:
+                name: kafka-cluster-credentials
+          imagePullPolicy: Always

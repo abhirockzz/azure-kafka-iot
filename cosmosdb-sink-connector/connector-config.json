@@ -1,0 +1,24 @@
+{
+    "name": "iot-sink",
+    "config": {
+        "connector.class": "com.azure.cosmos.kafka.connect.sink.CosmosDBSinkConnector",
+        "tasks.max": "1",
+        "topics": "mqtt.device-stats",
+        "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "value.converter.schemas.enable": "false",
+        "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+        "key.converter.schemas.enable": "false",
+        "connect.cosmos.connection.endpoint": "https://<enter cosmos db account name>.documents.azure.com:443/",
+        "connect.cosmos.master.key": "<enter cosmos db access key>",
+        "connect.cosmos.databasename": "iotdb",
+        "connect.cosmos.containers.topicmap": "mqtt.device-stats#device-data",
+        "transforms": "insertID,insertTTL,castTTLInt",
+        "transforms.insertID.type": "com.github.cjmatta.kafka.connect.smt.InsertUuid$Value",
+        "transforms.insertID.uuid.field.name": "id",
+        "transforms.insertTTL.type": "org.apache.kafka.connect.transforms.InsertField$Value",
+        "transforms.insertTTL.static.field": "ttl",
+        "transforms.insertTTL.static.value": "864000",
+        "transforms.castTTLInt.type": "org.apache.kafka.connect.transforms.Cast$Value",
+        "transforms.castTTLInt.spec": "ttl:int32"
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "name": "mqtt-source",
+    "config": {
+        "connector.class": "io.confluent.connect.mqtt.MqttSourceConnector",
+        "tasks.max": "1",
+        "mqtt.server.uri": "tcp://broker.hivemq.com:1883",
+        "mqtt.topics": "device-stats",
+        "kafka.topic": "mqtt.device-stats",
+        "value.converter": "org.apache.kafka.connect.converters.ByteArrayConverter",
+        "value.converter.schemas.enable": false,
+        "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "key.converter.schemas.enable": false,
+        "transforms": "convertToMap,convertKey,extract",
+        "transforms.convertToMap.type": "org.apache.kafka.connect.transforms.HoistField$Value",
+        "transforms.convertToMap.field": "data",
+        "transforms.convertKey.type": "org.apache.kafka.connect.transforms.ValueToKey",
+        "transforms.convertKey.fields": "data",
+        "transforms.extract.type": "org.apache.kafka.connect.transforms.ExtractField$Value",
+        "transforms.extract.field": "data",
+        "confluent.topic.bootstrap.servers": "<enter confluent cloud bootstrap server>",
+        "confluent.topic.replication.factor": 3,
+        "confluent.topic.security.protocol": "SASL_SSL",
+        "confluent.topic.sasl.jaas.config": "org.apache.kafka.common.security.plain.PlainLoginModule required username='<enter confluent cloud API key>' password='<enter confluent cloud Secret>';",
+        "confluent.topic.sasl.mechanism": "PLAIN"
+    }
+}

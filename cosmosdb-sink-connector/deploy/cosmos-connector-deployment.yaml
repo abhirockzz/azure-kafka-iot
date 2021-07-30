@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cosmosdb-kafka-connector
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cosmosdb-kafka-connector
+  template:
+    metadata:
+      labels:
+        app: cosmosdb-kafka-connector
+    spec:
+      containers:
+        - name: cosmosdb-kafka-connector
+          image: abhirockzz/cosmosdb-kafka-connector
+          envFrom:
+            - configMapRef:
+                name: connector-config
+            - secretRef:
+                name: kafka-cluster-credentials
+          imagePullPolicy: Always
