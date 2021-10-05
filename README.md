@@ -38,7 +38,7 @@ Create a database (named `iotdb`) and containers with the below mentioned specif
 
 [Provision a Azure Synapse Workspace using the portal](https://docs.microsoft.com/azure/synapse-analytics/quickstart-create-workspace?WT.mc_id=data-28802-abhishgu#create-a-synapse-workspace). Once that's done, you can [follow these instructions](https://docs.microsoft.com/azure/synapse-analytics/quickstart-create-apache-spark-pool-studio?WT.mc_id=data-28802-abhishgu) to create a serverless Apache Spark pool. Finally, create a Linked Service for Azure Cosmos DB.
 
-You can install a Kubernetes cluster on Azure [using the portal](https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough-portal#create-an-aks-cluster) or [Azure CLI](https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough#create-aks-cluster).
+Install a Kubernetes cluster on Azure [using the portal](https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough-portal#create-an-aks-cluster) or [Azure CLI](https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough#create-aks-cluster) - make sure it's in the same VNet as per Private Link config.
 
 In order to connect to the cluster from your local machine using `kubectl`, use the below command:
 
