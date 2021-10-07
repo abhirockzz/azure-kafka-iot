@@ -1,4 +1,4 @@
-# IoT analytics with Azure Cosmos DB, Azure Synapse Analytics and Confluent Cloud
+# Extracting Value from IOT using Azure Cosmos DB, Azure Synapse Analytics and Confluent Cloud
 
 Our (hypothetical) requirement is to deal ingest, store and analyse device data such as temperature and pressure) in different locations. Mock device data is generated using a program. This data flows into a MQTT broker and the Kafka [MQTT source connector](https://docs.confluent.io/kafka-connect-mqtt/current/mqtt-source-connector/index.html) is used to it to a Confluent Cloud Kafka cluster on Azure. From there on, the [Kafka Connect Sink connector for Azure Cosmos DB](https://docs.microsoft.com/azure/cosmos-db/kafka-connector-sink?WT.mc_id=data-28802-abhishgu) takes care of sending the device data from Confluent Cloud to Azure Cosmos DB.
 
